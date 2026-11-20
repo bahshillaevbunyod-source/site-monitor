@@ -1,10 +1,10 @@
 [
   { "name": "Sayqal (ремонт квартир)", "url": "https://sayqal-liard.vercel.app", "keyText": "Sayqal" },
-  { "name": "Dental (стоматология)", "url": "https://dental-clinic-one-pi.vercel.app", "keyText": "" },
-  { "name": "Autospace (автосервис, только публичная главная)", "url": "https://autospace-sage.vercel.app", "keyText": "" },
-  { "name": "Aevum (клиника)", "url": "https://aevum-clinic-kappa.vercel.app", "keyText": "" },
-  { "name": "Lingvia (учебный центр)", "url": "https://lingvia-center.vercel.app", "keyText": "" },
-  { "name": "Sahn (архитектурное бюро)", "url": "https://sahn-site.vercel.app", "keyText": "" },
-  { "name": "NOVAÉ (мебель)", "url": "https://novae-sandy.vercel.app", "keyText": "" },
+  { "name": "Dental (стоматология)", "url": "https://dental-clinic-one-pi.vercel.app", "keyText": "Dental" },
+  { "name": "Autospace (автосервис, только публичная главная)", "url": "https://autospace-sage.vercel.app", "keyText": "Autospace" },
+  { "name": "Aevum (клиника)", "url": "https://aevum-clinic-kappa.vercel.app", "keyText": "Aevum" },
+  { "name": "Lingvia (учебный центр)", "url": "https://lingvia-center.vercel.app", "keyText": "Lingvia" },
+  { "name": "Sahn (архитектурное бюро)", "url": "https://sahn-site.vercel.app", "keyText": "Sahn" },
+  { "name": "NOVAÉ (мебель)", "url": "https://novae-sandy.vercel.app", "keyText": "NOVAÉ" },
   { "name": "Kofe Nuqta (киоск-демо, был 404)", "url": "https://kofe-nuqta.vercel.app", "keyText": "" }
 ]
