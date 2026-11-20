@@ -30,9 +30,5 @@
   "https://kofe-nuqta.vercel.app": {
     "fails": 5,
     "down": true
-  },
-  "https://raw.githubusercontent.com/bahshillaevbunyod-source/site-monitor/main/test-target.txt": {
-    "fails": 0,
-    "down": false
   }
 }
