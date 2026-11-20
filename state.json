@@ -1,0 +1,34 @@
+{
+  "https://sayqal-liard.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://dental-clinic-one-pi.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://autospace-sage.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://aevum-clinic-kappa.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://lingvia-center.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://sahn-site.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://novae-sandy.vercel.app": {
+    "fails": 0,
+    "down": false
+  },
+  "https://kofe-nuqta.vercel.app": {
+    "fails": 1,
+    "down": false
+  }
+}
