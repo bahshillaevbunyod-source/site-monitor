@@ -1,9 +1,11 @@
 // Обходит все сайты из sites.json, применяет правило «сбой» и решает, о чём сообщить.
-// Запуск: node --use-system-ca monitor.mjs
+// Запуск: node --use-system-ca --env-file=.env.local monitor.mjs
 // Состояние между запусками хранится в state.json (сколько плохих проверок подряд, «лежит» ли сайт).
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { checkSite } from './check.mjs';
+import { sendMessage } from './telegram.mjs';
+import { downMessage, upMessage } from './messages.mjs';
 
 export const FAILS_TO_ALERT = 2; // столько плохих проверок ПОДРЯД, чтобы объявить сбой
 
@@ -44,7 +46,18 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log(`${r.name}: ${mark}`);
   }
 
-  writeFileSync(stateFile, JSON.stringify(states, null, 2));
   console.log('\nСобытий для Telegram:', events.length ? '' : 'нет');
-  for (const e of events) console.log(`  ${e.event === 'down' ? 'УПАЛ' : 'СНОВА РАБОТАЕТ'}: ${e.name} — ${e.problem ?? 'ок'}`);
+  for (const e of events) {
+    console.log(`  ${e.event === 'down' ? 'УПАЛ' : 'СНОВА РАБОТАЕТ'}: ${e.name}`);
+    try {
+      await sendMessage(e.event === 'down' ? downMessage(e) : upMessage(e));
+      console.log('    -> отправлено в Telegram');
+    } catch (err) {
+      // Не вышло отправить: откатываем состояние, чтобы следующий запуск попробовал снова, а тревога не потерялась
+      states[e.url] = e.event === 'down' ? { ...states[e.url], down: false } : { ...states[e.url], down: true };
+      console.log(`    -> НЕ отправлено (${err.message}), повторим при следующем запуске`);
+    }
+  }
+
+  writeFileSync(stateFile, JSON.stringify(states, null, 2));
 }
