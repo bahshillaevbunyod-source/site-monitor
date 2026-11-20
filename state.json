@@ -28,11 +28,11 @@
     "down": false
   },
   "https://kofe-nuqta.vercel.app": {
-    "fails": 3,
+    "fails": 4,
     "down": true
   },
   "https://raw.githubusercontent.com/bahshillaevbunyod-source/site-monitor/main/test-target.txt": {
-    "fails": 1,
-    "down": false
+    "fails": 2,
+    "down": true
   }
 }
