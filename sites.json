@@ -38,5 +38,10 @@
     "name": "Kofe Nuqta (киоск-демо, был 404)",
     "url": "https://kofe-nuqta.vercel.app",
     "keyText": ""
+  },
+  {
+    "name": "ТЕСТ (роняем вручную)",
+    "url": "https://raw.githubusercontent.com/bahshillaevbunyod-source/site-monitor/main/test-target.txt",
+    "keyText": "alive"
   }
 ]
