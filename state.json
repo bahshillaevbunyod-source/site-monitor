@@ -28,7 +28,7 @@
     "down": false
   },
   "https://kofe-nuqta.vercel.app": {
-    "fails": 6,
+    "fails": 7,
     "down": true
   }
 }
