@@ -1,33 +1,15 @@
 // Обходит все сайты из sites.json, применяет правило «сбой» и решает, о чём сообщить.
+// Версия для запуска в Node (локально и в GitHub Actions). Основной боевой запуск теперь в Cloudflare Worker (worker/index.mjs).
 // Запуск: node --use-system-ca --env-file=.env.local monitor.mjs
 // Состояние между запусками хранится в state.json (сколько плохих проверок подряд, «лежит» ли сайт).
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { checkSite } from './check.mjs';
+import { checkSite } from './lib/check-core.mjs';
+import { decide, FAILS_TO_ALERT } from './lib/decide.mjs';
 import { sendMessage } from './telegram.mjs';
 import { downMessage, upMessage } from './messages.mjs';
 
-export const FAILS_TO_ALERT = 2; // столько плохих проверок ПОДРЯД, чтобы объявить сбой
-
-// Чистая функция: берёт прошлое состояние сайта и новую проверку, отдаёт новое состояние и событие.
-// event: 'down' (объявить «упал»), 'up' (объявить «снова работает») или null (молчим).
-export function decide(prev, result) {
-  const state = { fails: prev?.fails ?? 0, down: prev?.down ?? false };
-  let event = null;
-
-  if (result.problem) {
-    state.fails += 1;
-    if (state.fails >= FAILS_TO_ALERT && !state.down) {
-      state.down = true;
-      event = 'down';
-    }
-  } else {
-    if (state.down) event = 'up';
-    state.fails = 0;
-    state.down = false;
-  }
-  return { state, event };
-}
+export { decide, FAILS_TO_ALERT };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const sites = JSON.parse(readFileSync(new URL('./sites.json', import.meta.url), 'utf8'));
