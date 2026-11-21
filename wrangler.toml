@@ -1,0 +1,14 @@
+name = "site-monitor"
+main = "worker/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = false          # публичного адреса у Worker нет: он только запускается по расписанию
+
+[triggers]
+crons = ["7 * * * *"]        # каждый час в :07 (по UTC)
+
+[[kv_namespaces]]
+binding = "STATE"            # здесь хранится состояние сайтов и отметка последнего запуска
+id = "d8404a87523346db9b0a88b0b1eb2e75"
+
+[observability]
+enabled = true               # журнал запусков в панели Cloudflare
